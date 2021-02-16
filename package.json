@@ -10,7 +10,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:spicy-when-code.helloWorld"
+		"onStartupFinished"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -18,6 +18,10 @@
 			{
 				"command": "spicy-when-code.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "spicy-when-code.exit",
+				"title": "Exit"
 			}
 		]
 	},
@@ -41,5 +45,8 @@
 		"mocha": "^8.2.1",
 		"typescript": "^4.1.3",
 		"vscode-test": "^1.5.0"
+	},
+	"dependencies": {
+		"rxjs": "^6.6.3"
 	}
 }
