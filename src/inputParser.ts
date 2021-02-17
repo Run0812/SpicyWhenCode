@@ -8,7 +8,7 @@ export class InputEvent {
     offset: number;
 
 
-    constructor(s:string, offset:number) {
+    constructor(s: string, offset: number) {
         this.text = s;
         this.offset = offset;
     }
@@ -36,9 +36,9 @@ export class InputParser {
                 tap(x => console.log(x)),
                 mergeMap(
                     e => from(e.contentChanges).pipe(
-                            filter(change => change.text.length >= 1), // TODO defaultIfEmpty 也许也行
-                            mergeMap(this.convertEvent)
-                        )
+                        filter(change => change.text.length >= 1), // TODO defaultIfEmpty 也许也行
+                        mergeMap(this.convertEvent)
+                    )
                 ),
                 share()
             );
@@ -46,15 +46,15 @@ export class InputParser {
 
     }
 
-    convertEvent(e: vscode.TextDocumentContentChangeEvent, index:number): Observable<InputEvent> {
+    convertEvent(e: vscode.TextDocumentContentChangeEvent, index: number): Observable<InputEvent> {
         return zip(from(e.text), range(e.rangeOffset, e.text.length)).pipe(
             map(([chr, off]) => new InputEvent(chr, off)));
     }
 
     get stream(): ConnectableObservable<InputEvent> {
-        return <ConnectableObservable<InputEvent>> this.inputStream.pipe(publish());
+        return <ConnectableObservable<InputEvent>>this.inputStream.pipe(publish());
     }
-    
+
     dispose() {
         // 通过unsubsrcibe inputStream 触发对onDidChangeTextDocument的解监听
         console.log("InputParser dispose");

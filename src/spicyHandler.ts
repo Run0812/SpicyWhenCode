@@ -4,7 +4,7 @@ interface Handler {
 }
 
 class CursorMotion implements Handler {
-    
+
     excuter(): void {
         throw new Error("Method not implemented.");
     }
@@ -12,7 +12,7 @@ class CursorMotion implements Handler {
 }
 
 class TextModifier implements Handler {
-       
+
     excuter(): void {
         throw new Error("Method not implemented.");
     }

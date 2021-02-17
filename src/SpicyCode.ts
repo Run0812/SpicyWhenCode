@@ -11,13 +11,13 @@ export class SpicyCode implements vscode.Disposable {
 
     constructor(input: vscode.Event<vscode.TextDocumentChangeEvent>) {
         this.parser = new InputParser(input);
-        this.source = <ConnectableObservable<InputEvent>> this.parser.stream;
+        this.source = <ConnectableObservable<InputEvent>>this.parser.stream;
         this.subscribe(this.source);
     }
 
     start() {
         vscode.window.showInformationMessage('Fuck U from SpicyWhenCode!');
-        this.inputConnection = this.source.connect(); 
+        this.inputConnection = this.source.connect();
     }
 
     exit() {
@@ -31,7 +31,7 @@ export class SpicyCode implements vscode.Disposable {
         this.parser.dispose();
     }
 
-    private subscribe(input:ConnectableObservable<InputEvent>) {
+    private subscribe(input: ConnectableObservable<InputEvent>) {
         // test
         input.subscribe(
             (e) => {
@@ -54,11 +54,7 @@ export class SpicyCode implements vscode.Disposable {
                     console.log(e);
                 }
             }
-            
+
         );
-        
     }
-
-
-
 }
