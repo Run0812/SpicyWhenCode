@@ -12,7 +12,10 @@
 ## rxjs
 - [RepeatWhen](https://rxjs-dev.firebaseapp.com/api/operators/repeatWhen) 可以用来使keyword重新开始
 - [sequenceEqual](https://rxjs-dev.firebaseapp.com/api/operators/sequenceEqual) 关键词比较
-- 
+- [bufferCount](https://rxjs-dev.firebaseapp.com/api/operators/bufferCount) keyword滑动窗口
+- [timeInterval](https://rxjs-dev.firebaseapp.com/api/operators/timeInterval) 和上一次触发的时间间隔
+- timeout 配合 retry
+
 
 ## 玩法
 - w a s d 等关键词触发移动 Token将前后移动？
@@ -44,7 +47,10 @@
          2. 暂不实现
    2. 流的管理与映射
       1. 加载配置
-      2. 流的生成
-      3. hanlder监听的订阅关联
+      3. 流的生成
+      4. hanlder监听的订阅关联  Condition => Handler
+      5. Condition 作用在输入流上，得到自己关心的事件流
+         1. 是一组操作
+      6. Handler订阅该事件流即可
    3. 流转换的公共方法
   

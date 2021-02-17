@@ -1,9 +1,9 @@
-import { fromEventPattern, Observable, from, Subscription, range, zip } from "rxjs";
-import { mergeMap, map, filter } from 'rxjs/operators';
+import { fromEventPattern, from, Subscription, range, zip, ConnectableObservable, Observable } from "rxjs";
+import { mergeMap, map, filter, publish, refCount, tap, share } from 'rxjs/operators';
 import * as vscode from 'vscode';
 
 
-class InputEvent {
+export class InputEvent {
     text: string = '';
     offset: number;
 
@@ -12,48 +12,53 @@ class InputEvent {
         this.text = s;
         this.offset = offset;
     }
+
+    toString() {
+        return `text: ${this.text}, offset: ${this.offset}`;
+    }
 }
 
 
 // 将vscode的输入事件转化为我需要的按键事件流
 export class InputParser {
 
-    inputStream: Observable<InputEvent>;
-    private _subscriptions: Subscription[] = [];
+    private inputStream: Observable<InputEvent>;
+    private holder: Subscription;
 
 
     constructor(input: vscode.Event<vscode.TextDocumentChangeEvent>) {
         // remove handler called when unsubscirbe
         this.inputStream = fromEventPattern<vscode.TextDocumentChangeEvent>(
             input,
-            function (_, disposable: vscode.Disposable) {
-                disposable.dispose();
-            }).pipe(
+            (_, disposable: vscode.Disposable) => {
+                disposable.dispose(); console.log("onDidChangeTextDocument remove!");
+            }).pipe(   // TODO 这部分要从类转换成方法，将这种转换抽象成一个操作
+                tap(x => console.log(x)),
                 mergeMap(
-                    (e) => {
-                        return from(e.contentChanges).pipe(
-                            filter(change => change.text.length >= 1), // TODO: defaultIfEmpty 也许也行
-                            mergeMap(change => {
-                                return zip(from(change.text), range(change.rangeOffset, change.text.length)).pipe(
-                                    map(([chr, off]) => {return new InputEvent(chr, off);})
-                                );                            
-                            })
-                        );
-                    }
-                )
+                    e => from(e.contentChanges).pipe(
+                            filter(change => change.text.length >= 1), // TODO defaultIfEmpty 也许也行
+                            mergeMap(this.convertEvent)
+                        )
+                ),
+                share()
             );
+        this.holder = this.inputStream.subscribe();
+
     }
 
-    subscribe(next?: (value: InputEvent) => void, error?: (error: any) => void, complete?: () => void): void {
-        this._subscriptions.push(this.inputStream.subscribe(next, error, complete));
- 
-    };
+    convertEvent(e: vscode.TextDocumentContentChangeEvent, index:number): Observable<InputEvent> {
+        return zip(from(e.text), range(e.rangeOffset, e.text.length)).pipe(
+            map(([chr, off]) => new InputEvent(chr, off)));
+    }
 
-
+    get stream(): ConnectableObservable<InputEvent> {
+        return <ConnectableObservable<InputEvent>> this.inputStream.pipe(publish());
+    }
+    
     dispose() {
         // 通过unsubsrcibe inputStream 触发对onDidChangeTextDocument的解监听
         console.log("InputParser dispose");
-        this._subscriptions.forEach(subscription => subscription.unsubscribe());
+        this.holder.unsubscribe();
     }
 
 }

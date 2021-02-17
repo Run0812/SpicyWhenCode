@@ -29,6 +29,11 @@
 				"command": "spicy-when-code.start",
 				"title": "开启老火模式",
 				"category": "Spicy"
+			},
+			{
+				"command": "spicy-when-code.dispose",
+				"title": "关闭插件",
+				"category": "Spicy"
 			}
 
 		]
