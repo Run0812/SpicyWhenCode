@@ -1,7 +1,7 @@
 {
 	"name": "spicy-when-code",
 	"displayName": "SpicyWhenCode",
-	"description": "make you confused when code",
+	"description": "make you annoyed when code",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.53.0"
@@ -17,12 +17,20 @@
 		"commands": [
 			{
 				"command": "spicy-when-code.helloWorld",
-				"title": "Hello World"
+				"title": "Hello World",
+				"category": "Spicy"
 			},
 			{
 				"command": "spicy-when-code.exit",
-				"title": "Exit"
+				"title": "退出老火模式",
+				"category": "Spicy"
+			},
+			{
+				"command": "spicy-when-code.start",
+				"title": "开启老火模式",
+				"category": "Spicy"
 			}
+
 		]
 	},
 	"scripts": {

@@ -3,35 +3,6 @@ import { mergeMap, map, filter } from 'rxjs/operators';
 import * as vscode from 'vscode';
 
 
-// 对外暴露总框架
-export class SpicyCode implements vscode.Disposable {
-    input: InputParser;
-
-
-    constructor(input: vscode.Event<vscode.TextDocumentChangeEvent>) {
-        this.input = new InputParser(input);
-
-        // for test
-        this.input.subscribe(
-            (e) => {
-                console.log(`content: ${e.text}, offset: ${e.offset}`);
-            }, 
-            console.error,
-            () => {
-                console.log('stream completed');
-            }
-            
-        );
-    }
-
-
-    dispose() {
-        console.log("SpicyCode dispose");
-        this.input.dispose();
-    }
-
-}
-
 class InputEvent {
     text: string = '';
     offset: number;
@@ -45,7 +16,7 @@ class InputEvent {
 
 
 // 将vscode的输入事件转化为我需要的按键事件流
-class InputParser {
+export class InputParser {
 
     inputStream: Observable<InputEvent>;
     private _subscriptions: Subscription[] = [];
@@ -84,7 +55,5 @@ class InputParser {
         console.log("InputParser dispose");
         this._subscriptions.forEach(subscription => subscription.unsubscribe());
     }
-
-
 
 }
