@@ -1,8 +1,10 @@
 {
 	"name": "spicy-when-code",
 	"displayName": "SpicyWhenCode",
-	"description": "make you annoyed when code",
+	"description": "Make you annoyed when coding!",
+	"publisher": "SpicyMango",
 	"version": "0.0.1",
+	"repository": "https://github.com/Run0812/SpicyWhenCode",
 	"engines": {
 		"vscode": "^1.53.0"
 	},
