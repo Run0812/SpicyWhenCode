@@ -33,7 +33,6 @@ export class InputParser {
             (_, disposable: vscode.Disposable) => {
                 disposable.dispose(); console.log("onDidChangeTextDocument remove!");
             }).pipe(   // TODO 这部分要从类转换成方法，将这种转换抽象成一个操作
-                tap(x => console.log(x)),
                 mergeMap(
                     e => from(e.contentChanges).pipe(
                         filter(change => change.text.length >= 1), // TODO defaultIfEmpty 也许也行
@@ -52,7 +51,7 @@ export class InputParser {
     }
 
     get stream(): ConnectableObservable<InputEvent> {
-        return <ConnectableObservable<InputEvent>>this.inputStream.pipe(publish());
+        return this.inputStream.pipe(publish()) as ConnectableObservable<InputEvent>;
     }
 
     dispose() {

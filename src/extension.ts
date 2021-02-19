@@ -12,8 +12,14 @@ export function activate(context: vscode.ExtensionContext) {
 	spicyCode.start();
 
 	context.subscriptions.push(vscode.commands.registerCommand('spicy-when-code.helloWorld', () => vscode.window.showInformationMessage('Fuck U from SpicyWhenCode!')));
-	context.subscriptions.push(vscode.commands.registerCommand('spicy-when-code.start', () => spicyCode.start()));
-	context.subscriptions.push(vscode.commands.registerCommand('spicy-when-code.exit', () => spicyCode.exit()));
+    context.subscriptions.push(vscode.commands.registerCommand('spicy-when-code.start', () => {
+		vscode.window.showInformationMessage('Fuck U from SpicyWhenCode!');
+		spicyCode.start();
+	}));
+	context.subscriptions.push(vscode.commands.registerCommand('spicy-when-code.exit', () => {
+        vscode.window.showInformationMessage('Fuck off from SpicyWhenCode!');
+		spicyCode.exit();
+	}));
 	context.subscriptions.push(vscode.commands.registerCommand('spicy-when-code.dispose', () => spicyCode.dispose()));
 
 }

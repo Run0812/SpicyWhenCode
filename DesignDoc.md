@@ -8,6 +8,9 @@
   - Represents an editor that is attached to a document.
 - Workspace
   - onDidChangeTextDocument
+- getConfiguration
+  - 获得配置信息 
+
   
 ## rxjs
 - [RepeatWhen](https://rxjs-dev.firebaseapp.com/api/operators/repeatWhen) 可以用来使keyword重新开始
