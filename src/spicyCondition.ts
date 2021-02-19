@@ -4,10 +4,11 @@ import { bufferCount, timeout, retry, filter, bufferTime, tap } from "rxjs/opera
 import { InputEvent } from "./inputParser";
 
 
-export function nTimes<T>(n: number, timeWindow: number) {
+export function nTimes<T>(n: number, timeWindow: number, strict:boolean=false) {
     return pipe(
         bufferTime<T>(timeWindow),
-        filter(buffer => buffer.length >= n)
+        filter(buffer => strict ? buffer.length === n : buffer.length >= n),
+   
     );
 };
 
@@ -30,9 +31,9 @@ export function keywordTime(keyword: string, timeWindow: number) {
 
 }
 
-export function nClick(key: string, n:number, timeWindow:number) {
+export function nClick(key: string, n:number, timeWindow:number, strict:boolean=false) {
     return pipe(
-        filter<InputEvent>(e => e.text === key),
-        nTimes(n, timeWindow)
+        filter<InputEvent>(e => e.text.toLowerCase() === key),
+        nTimes<InputEvent>(n, timeWindow, strict)
     );
 }

@@ -16,6 +16,7 @@
 	},
 	"exclude": [
 		"node_modules",
-		".vscode-test"
+		".vscode-test",
+		"proj_for_test"
 	]
 }

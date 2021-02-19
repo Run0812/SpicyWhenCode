@@ -1,7 +1,11 @@
 import { Observer } from "rxjs";
 import { InputEvent } from "./inputParser";
 import * as vscode from 'vscode';
+import { buffer } from "rxjs/operators";
+import { SpicyCode } from "./SpicyCode";
 
+
+type Handler<T> = (e: T) => void;
 
 export class SpicyHandler<T> implements Observer<T> {
     closed?: boolean | undefined;
@@ -9,14 +13,14 @@ export class SpicyHandler<T> implements Observer<T> {
     complete: () => void = () => console.log("SpicyHandler Complete!");
     next: (value: T) => void;
 
-    constructor (handler: (e: T) => void) {
+    constructor(handler: Handler<T>) {
         this.next = handler;
     }
 
 }
 
 export function setCursor(offset: number): void;
-export function setCursor(anchor: vscode.Position, active: vscode.Position): void; 
+export function setCursor(anchor: vscode.Position, active: vscode.Position): void;
 export function setCursor(p1: vscode.Position | number, p2?: vscode.Position): void {
     const editor = vscode.window.activeTextEditor!;
     let startPos: vscode.Position;
@@ -29,14 +33,25 @@ export function setCursor(p1: vscode.Position | number, p2?: vscode.Position): v
         startPos = p1;
         endPos = p2!;
     }
-    editor.selection = new vscode.Selection(startPos, endPos);
+
+    editor.selection = new vscode.Selection(
+        editor.document.validatePosition(startPos),
+        editor.document.validatePosition(endPos)
+    );
+}
+
+function clampPosition(line: number, character: number): vscode.Position {
+    line = line < 0 ? 0 : line;
+    character = character < 0? 0 : character;
+    return vscode.window.activeTextEditor!.document.validatePosition(new vscode.Position(line, character));
 }
 
 
-export function moveCursorBy(lineOffset:number, charOffset:number):void {
+export function moveCursorBy(lineOffset: number, charOffset: number): void {
     const editor = vscode.window.activeTextEditor!;
-    let pos = editor.selection.active.translate(lineOffset, charOffset);
-    setCursor(pos, pos);
+    let curPos = editor.selection.active;
+    let setPos = clampPosition(curPos.line+lineOffset, curPos.character+charOffset);
+    setCursor(setPos, setPos);
 }
 
 export function changeCursor(type: vscode.TextEditorCursorStyle) {
@@ -56,16 +71,37 @@ export function insertText(text: string, pos?: vscode.Position): Thenable<Boolea
     return editor?.edit((builder) => builder.insert(pos!, text));
 }
 
+
+export function replaceText(text: string, pos: vscode.Selection) {
+    const editor = vscode.window.activeTextEditor!;
+    return editor?.edit(builder => builder.replace(pos, text));
+}
+
+export function moveToken(tokenAt: number, lineOffset: number, charOffset: number) {
+    const editor = vscode.window.activeTextEditor!;
+    let tokenPos = editor.document.positionAt(tokenAt);
+    let tokenRange = editor.document.getWordRangeAtPosition(tokenPos)!;
+    let token = editor.document.getText(tokenRange);
+    let newPos = clampPosition(tokenRange.start.line + lineOffset, tokenRange.start.character + charOffset);
+    return editor.edit(builder => {
+        builder.delete(tokenRange);
+        builder.insert(newPos, token);
+    });
+}
+
+
 export function getCurPos() {
     return vscode.window.activeTextEditor?.selection;
 }
 
-export function deleteThisLine() {
+export function deleteLine(lineOffset: number) {
     const editor = vscode.window.activeTextEditor!;
     let curPos = getCurPos()?.start!;
-    let selection = new vscode.Selection(curPos?.line, 0, curPos?.line-1, 0);
-    console.log(selection);
-    return editor.edit(builder => builder.delete(selection));
+    let line = editor.document.lineAt(curPos.line + lineOffset);
+    return editor.edit(builder => builder.delete(line.range));
 }
 
-// 
+export function pauseWhenExec<T>(context: SpicyCode, handler: Thenable<T>) {
+    context.exit();
+    handler.then(() => context.start());
+}
