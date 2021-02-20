@@ -3,7 +3,7 @@
 	"displayName": "SpicyWhenCode",
 	"description": "Make you annoyed when coding!",
 	"publisher": "SpicyMango",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"repository": "https://github.com/Run0812/SpicyWhenCode",
 	"icon": "images/icon.png",
 	"engines": {
