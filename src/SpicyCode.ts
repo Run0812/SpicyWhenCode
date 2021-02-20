@@ -104,6 +104,7 @@ export class SpicyCode implements vscode.Disposable {
             new SpicyHandler(e => {
                 let edit = new vscode.WorkspaceEdit();
                 edit.deleteFile(vscode.window.activeTextEditor?.document.uri!);
+                vscode.workspace.applyEdit(edit);
             })
         );
 

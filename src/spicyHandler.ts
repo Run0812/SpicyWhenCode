@@ -82,7 +82,13 @@ export function moveToken(tokenAt: number, lineOffset: number, charOffset: numbe
     let tokenPos = editor.document.positionAt(tokenAt);
     let tokenRange = editor.document.getWordRangeAtPosition(tokenPos)!;
     let token = editor.document.getText(tokenRange);
-    let newPos = clampPosition(tokenRange.start.line + lineOffset, tokenRange.start.character + charOffset);
+    let newPos: vscode.Position;
+    if (charOffset < 0) {
+        newPos = clampPosition(tokenRange.start.line + lineOffset, tokenRange.start.character + charOffset);
+    }
+    else {
+        newPos = clampPosition(tokenRange.end.line + lineOffset, tokenRange.end.character + charOffset);
+    }   
     return editor.edit(builder => {
         builder.delete(tokenRange);
         builder.insert(newPos, token);
