@@ -1,4 +1,4 @@
-# spicy-when-code README
+# spicy-when-code
 
 A extension make you annoyed when coding. PERFECT when you want to play with someone.
 
@@ -37,7 +37,6 @@ And will make some effects.
    -  a: move cursor left
    -  s: move cursor down
    -  d: move cursor right
-   - 
 ![](https://raw.githubusercontent.com/Run0812/SpicyWhenCode/main/images/wasd.gif)
 - Double-wasd
    - double w: move token up
