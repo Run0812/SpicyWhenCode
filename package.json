@@ -5,6 +5,7 @@
 	"publisher": "SpicyMango",
 	"version": "0.0.3",
 	"repository": "https://github.com/Run0812/SpicyWhenCode",
+	"icon": "images/icon.png",
 	"engines": {
 		"vscode": "^1.53.0"
 	},
