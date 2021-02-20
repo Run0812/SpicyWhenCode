@@ -32,38 +32,38 @@ And will make some effects.
 - Spicy: 关闭插件  - dispose the extension
 
 ### Click
-1. wasd
-   1. w: move cursor up
-   2. a: move cursor left
-   3. s: move cursor down
-   4. d: move cursor right
-   5. ![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/wasd.gif)
-2. Double-wasd
-   1. double w: move token up
-   2. double a: move token left
-   3. double s: move token down
-   4. double d: move token right
-   5. ![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/wasd-double.gif)
-3.  any input
-    1.  change the cursor style randomly
-    2. ![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/cursor_style.gif)
+- wasd
+   -  w: move cursor up
+   -  a: move cursor left
+   -  s: move cursor down
+   -  d: move cursor right
+![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/wasd.gif)
+- Double-wasd
+   - double w: move token up
+   - double a: move token left
+   - double s: move token down
+   - double d: move token right
+![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/wasd-double.gif)
+- any input
+   - change the cursor style randomly
+![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/cursor_style.gif)
 
 ### Keyword
 - return
   - delete last line
 - del 
   - delete this line
-- ![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/del.gif)
+![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/del.gif)
 -  gg: delete this file
-   - ![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/gg.gif)
+![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/gg.gif)
 - new: create a random name file and show "Happy New Year" on status bar
-  - ![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/new.gif)
+![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/new.gif)
 -  split: replaced with " s p l i t e "
-   - ![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/split.gif)
+![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/split.gif)
 -  if: auto completion - "if I were a boy~"
-   - ![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/if.gif)
+![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/if.gif)
 -  for: auto completion - "for what? bro"
-   - ![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/for.gif)
+![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/for.gif)
 
 ## Requirements
 
