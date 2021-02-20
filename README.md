@@ -37,33 +37,33 @@ And will make some effects.
    -  a: move cursor left
    -  s: move cursor down
    -  d: move cursor right
-![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/wasd.gif)
+![](https://github.com/Run0812/SpicyWhenCode/raw/main/images/wasd.gif)
 - Double-wasd
    - double w: move token up
    - double a: move token left
    - double s: move token down
    - double d: move token right
-![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/wasd-double.gif)
+![](https://github.com/Run0812/SpicyWhenCode/raw/main/images/wasd-double.gif)
 - any input
    - change the cursor style randomly
-![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/cursor_style.gif)
+![](https://github.com/Run0812/SpicyWhenCode/raw/main/images/cursor_style.gif)
 
 ### Keyword
 - return
   - delete last line
 - del 
   - delete this line
-![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/del.gif)
+![](https://github.com/Run0812/SpicyWhenCode/raw/main/images/del.gif)
 -  gg: delete this file
-![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/gg.gif)
+![](https://github.com/Run0812/SpicyWhenCode/raw/main/images/gg.gif)
 - new: create a random name file and show "Happy New Year" on status bar
-![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/new.gif)
+![](https://github.com/Run0812/SpicyWhenCode/raw/main/images/new.gif)
 -  split: replaced with " s p l i t e "
-![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/split.gif)
+![](https://github.com/Run0812/SpicyWhenCode/raw/main/images/split.gif)
 -  if: auto completion - "if I were a boy~"
-![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/if.gif)
+![](https://github.com/Run0812/SpicyWhenCode/raw/main/images/if.gif)
 -  for: auto completion - "for what? bro"
-![](https://github.com/Run0812/SpicyWhenCode/blob/main/images/for.gif)
+![](https://github.com/Run0812/SpicyWhenCode/raw/main/images/for.gif)
 
 ## Requirements
 
