@@ -104,7 +104,7 @@ export function deleteLine(lineOffset: number) {
     const editor = vscode.window.activeTextEditor!;
     let curPos = getCurPos()?.start!;
     let line = editor.document.lineAt(curPos.line + lineOffset);
-    return editor.edit(builder => builder.delete(line.range));
+    return editor.edit(builder => builder.delete(editor.document.validateRange(line.range)));
 }
 
 export function pauseWhenExec<T>(context: SpicyCode, handler: Thenable<T>) {
