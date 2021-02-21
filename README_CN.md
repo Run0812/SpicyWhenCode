@@ -9,10 +9,12 @@
 
 ### 触发条件
 触发条件核心是监听用户的输入事件，将文本改变事件重新映射成单字符的输入事件。
-运用响应式编程的思想，将输入事件看作流，对流进行Buffer、map、merge等操作转换成下级的条件流，完成条件的监听。
+运用响应式编程的思想，将输入事件看作流，对流进行Buffer、map、filter等操作转换成下级的条件流，完成条件的监听。
 目前插件接入Rxjs，主要实现两种操作符
 - Keyword：连续输入字符是否匹配
+![](images/keyword.svg)
 - nClick：一段时间内是否输入某字符N次
+![](images/nClick.svg)
 
 ### 执行操作
 执行操作使用VS Code的API，主要提供了
@@ -41,30 +43,39 @@
    -  a: 光标上移
    -  s: 光标上移
    -  d: 光标上移
-![](https://raw.githubusercontent.com/Run0812/SpicyWhenCode/main/images/wasd.gif)
+  
+![](images/wasd.gif)
 - 双击wasd
    - double w: token上移
    - double a: token左移
    - double s: token下移
    - double d: token右移
-![](https://raw.githubusercontent.com/Run0812/SpicyWhenCode/main/images/wasd-double.gif)
+  
+![](images/wasd-double.gif)
 - 任何输入
    - 随机改变光标样式
-![](https://raw.githubusercontent.com/Run0812/SpicyWhenCode/main/images/cursor_style.gif)
+  
+![](images/cursor_style.gif)
 
 ### Keyword
 - return
   - 删除上一行
 - del 
   - 删除本行
-![](https://raw.githubusercontent.com/Run0812/SpicyWhenCode/main/images/del.gif)
+
+![](images/del.gif)
 -  gg: 删除本文件
-![](https://raw.githubusercontent.com/Run0812/SpicyWhenCode/main/images/gg.gif)
+
+![](images/gg.gif)
 - new: 新建随机名文件 and 展示 "Happy New Year" 在状态栏
-![](https://raw.githubusercontent.com/Run0812/SpicyWhenCode/main/images/new.gif)
+
+![](images/new.gif)
 -  split: 替换为 " s p l i t e "
-![](https://raw.githubusercontent.com/Run0812/SpicyWhenCode/main/images/split.gif)
+  
+![](images/split.gif)
 -  if: 自动补全 - "if I were a boy~"
-![](https://raw.githubusercontent.com/Run0812/SpicyWhenCode/main/images/if.gif)
+  
+![](images/if.gif)
 -  for: 自动补全 - "for what? bro"
-![](https://raw.githubusercontent.com/Run0812/SpicyWhenCode/main/images/for.gif)
+  
+![](images/for.gif)
