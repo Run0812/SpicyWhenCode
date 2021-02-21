@@ -17,8 +17,10 @@
 运用响应式编程的思想，将输入事件看作流，对流进行Buffer、map、filter等操作转换成下级的条件流，完成条件的监听。
 目前插件接入Rxjs，主要实现两种操作符
 - Keyword：连续输入字符是否匹配
+
 ![](images/keyword.svg)
 - nClick：一段时间内是否输入某字符N次
+
 ![](images/nClick.svg)
 
 ### 执行操作
